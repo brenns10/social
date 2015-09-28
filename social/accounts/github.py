@@ -36,7 +36,7 @@ class GitHubAccount(Account):
             yield {'url': anchor.attrib['href']}
 
     @staticmethod
-    def match(self, **options):
+    def match(**options):
         return  (
             'url' in options
             and _URL_RE.match(options['url'])
