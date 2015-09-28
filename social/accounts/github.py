@@ -41,3 +41,6 @@ class GitHubAccount(Account):
             'url' in options
             and _URL_RE.match(options['url'])
         )
+
+    def __str__(self):
+        return 'GitHubAccount(username=%r)' % self._username
