@@ -4,11 +4,12 @@ from __future__ import print_function, division
 from collections import deque
 
 from accounts import *
+from accounts import Account
 
 
 def account_for(**breadcrumbs):
     """Return the first account the breadcrumbs match."""
-    for cls in Account.__subclasses__:
+    for cls in Account.__subclasses__():
         if cls.match(**breadcrumbs):
             return cls(**breadcrumbs)
 
