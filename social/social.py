@@ -23,9 +23,10 @@ def build_network(initial_account):
     # Dijkstra's Algorithm, anyone?
     while visit_queue:
         account = visit_queue.popleft()
+        print(account)
         for breadcrumbs in account.expand(info):
             new_account = account_for(**breadcrumbs)
-            if new_account not in accounts:
+            if new_account is not None and new_account not in accounts:
                 accounts.add(new_account)
                 visit_queue.append(new_account)
 
