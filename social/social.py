@@ -14,6 +14,13 @@ def account_for(**breadcrumbs):
             return cls(**breadcrumbs)
 
 
+def account_slug(slug):
+    acct_type, username = slug.split(':', 1)
+    for cls in Account.__subclasses__():
+        if acct_type == cls.__name__ or acct_type == cls.shortname():
+            return cls(username=username)
+
+
 def build_network(initial_account):
     """Given an initial account, attempt to return all other accounts."""
     visit_queue = deque([initial_account])
@@ -31,3 +38,13 @@ def build_network(initial_account):
                 visit_queue.append(new_account)
 
     return accounts
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) < 2:
+        print('Must provide starting account.')
+        sys.exit(1)
+    else:
+        acct = account_slug(sys.argv[1])
+        build_network(acct)
