@@ -48,3 +48,6 @@ class GitHubAccount(Account):
 
     def __str__(self):
         return 'GitHubAccount(username=%r)' % self._username
+
+    def __hash__(self):
+        return hash(self._username)

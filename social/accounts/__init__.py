@@ -53,3 +53,7 @@ class Account(ABC):
           search.
         """
         pass
+
+    @abstractmethod
+    def __hash__(self):
+        pass
