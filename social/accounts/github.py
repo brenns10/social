@@ -42,5 +42,9 @@ class GitHubAccount(Account):
             and _URL_RE.match(options['url'])
         )
 
+    @staticmethod
+    def shortname():
+        return 'github'
+
     def __str__(self):
         return 'GitHubAccount(username=%r)' % self._username

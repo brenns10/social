@@ -19,6 +19,14 @@ class Account(ABC):
 
     @staticmethod
     @abstractmethod
+    def shortname():
+        """
+        Return user-friendlier name for CLI stuff.
+        """
+        pass
+
+    @staticmethod
+    @abstractmethod
     def match(*breadcrumbs):
         """
         Return truthy if the breadcrumbs match the account.
