@@ -3,16 +3,17 @@
 from __future__ import print_function, division
 from collections import deque
 
-import accounts
+from accounts import Account
 
 
-def account_for(url):
-    """Return the first account the URL matches."""
-    for name, cls in accounts.__accounts__:
-        if cls.match(url):
-            return cls(url)
+def account_for(**breadcrumbs):
+    """Return the first account the breadcrumbs match."""
+    for name, cls in Account.__subclasses__:
+        if cls.match(**breadcrumbs):
+            return cls(**breadcrumbs)
 
-def build_network(initial_account, options=None):
+
+def build_network(initial_account):
     """Given an initial account, attempt to return all other accounts."""
     visit_queue = deque([initial_account])
     accounts = set([initial_account])
@@ -21,8 +22,8 @@ def build_network(initial_account, options=None):
     # Dijkstra's Algorithm, anyone?
     while visit_queue:
         account = visit_queue.popleft()
-        for url in account.expand(info):
-            new_account = account_for(url)
+        for breadcrumbs in account.expand(info):
+            new_account = account_for(**breadcrumbs)
             if new_account not in accounts:
                 accounts.add(new_account)
                 visit_queue.append(new_account)
