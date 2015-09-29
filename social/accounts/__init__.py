@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 
-__all__ = ['github', 'site']
+__all__ = ['github', 'site', 'twitter', 'so']
 
 
 def account_for(**breadcrumbs):
