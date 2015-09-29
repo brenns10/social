@@ -1,17 +1,10 @@
-"""Contains core network expansion code."""
+"""Contains core network code."""
 
 from __future__ import print_function, division
 from collections import deque
 
 from accounts import *
-from accounts import Account
-
-
-def account_for(**breadcrumbs):
-    """Return the first account the breadcrumbs match."""
-    for cls in Account.__subclasses__():
-        if cls.match(**breadcrumbs):
-            return cls(**breadcrumbs)
+from accounts import Account, account_for
 
 
 def account_slug(slug):

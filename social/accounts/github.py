@@ -17,7 +17,7 @@ class GitHubAccount(Account):
         if username is not None:
             self._username = username
         elif url is not None:
-            match = _URL_RE.match(url)
+            match = _URL_RE.fullmatch(url)
             if match:
                 self._username = match.group('username')
             else:
@@ -39,7 +39,7 @@ class GitHubAccount(Account):
     def match(**options):
         return  (
             'url' in options
-            and _URL_RE.match(options['url'])
+            and _URL_RE.fullmatch(options['url'])
         )
 
     @staticmethod
@@ -51,3 +51,6 @@ class GitHubAccount(Account):
 
     def __hash__(self):
         return hash(self._username)
+
+    def __eq__(self, other):
+        return type(other) is GitHubAccount and self._username == other._username

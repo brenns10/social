@@ -2,7 +2,14 @@
 
 from abc import ABC, abstractmethod
 
-__all__ = ['github']
+__all__ = ['github', 'site']
+
+
+def account_for(**breadcrumbs):
+    """Return the first account the breadcrumbs match."""
+    for cls in Account.__subclasses__():
+        if cls.match(**breadcrumbs):
+            return cls(**breadcrumbs)
 
 
 class Account(ABC):
