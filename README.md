@@ -50,6 +50,10 @@ want to make sure all the functions work correctly (especially `__eq__`) to
 prevent an infinite loop in the search.  Also, try to make sure you have PEP8
 formatted code!
 
+Perhaps most importantly, you need to update the `__all__` list in
+`social/accounts/__init__.py` with the module name for your account, in order to
+make it automatically import and be considered during the search.
+
 License
 -------
 
