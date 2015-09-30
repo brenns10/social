@@ -3,7 +3,10 @@
 from __future__ import print_function, division
 from collections import deque
 
+# This import loads all social account modules (and sadly puts them into the
+# current namespace).
 from accounts import *
+# This actually imports the stuff from accounts/__init__.py we want.
 from accounts import Account, account_for
 
 
