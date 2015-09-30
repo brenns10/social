@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorial &mdash; Social 0.1 documentation</title>
+  <title>Plugins &mdash; Social 0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="Social 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Plugins" href="plugins.html"/>
-        <link rel="prev" title="Welcome to Social’s documentation!" href="index.html"/> 
+        <link rel="next" title="Extending Social" href="extending.html"/>
+        <link rel="prev" title="Tutorial" href="tutorial.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,12 +82,8 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#getting-it-installed">Getting it installed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running">Running</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Social</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
@@ -120,11 +116,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Tutorial</li>
+    <li>Plugins</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/tutorial.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/plugins.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -134,54 +130,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
-<p>Social is pretty easy to use.  So easy, in fact, that this tutorial is almost
-unnecessary.  But here it is anyway!</p>
-<div class="section" id="getting-it-installed">
-<h2>Getting it installed<a class="headerlink" href="#getting-it-installed" title="Permalink to this headline">¶</a></h2>
-<p>Since Social is in a development stage right now, I do not have a Python package
-for it submitted to PyPI.  So, if you would like to try it, you&#8217;ll need to
-directly use the development version.  You&#8217;ll need either Python 2 or Python 3,
-Virtualenv, Pip, and Git.</p>
-<p>First, clone the repository, and enter it:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ git clone git@github.com:brenns10/social.git
-$ cd social
-</pre></div>
-</div>
-<p>Then, you&#8217;ll probably want to create a &#8220;virtual environment&#8221; to hold all the
-dependencies for the project.  Do so by running:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ virtualenv venv
-# If that doesn&#39;t work, try this:
-$ pyvenv venv
-</pre></div>
-</div>
-<p>Then, enter the virtual environment, and install the required packages:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ . venv/bin/activate
-$ pip install -r requirements.txt
-</pre></div>
-</div>
-<p>Now you should be able to run the program:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ python social/social.py
-</pre></div>
-</div>
-</div>
-<div class="section" id="running">
-<h2>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h2>
-<p>When you run the program, you give it an initial social networking account.  It
-will visit that account and try to find more linked accounts.  Then it will
-visit those accounts to find even more, and so forth.  To provide the first
-account, you give it as a command line argument.  You give arguments in a
-<code class="docutils literal"><span class="pre">key:value</span></code> way, where the key is the name of the social network, and the
-value is usually the username.  You can see the full list of supported social
-networking accounts and their command line syntax on the <a class="reference internal" href="plugins.html#plugins"><span>Plugins</span></a> page.
-For instance, you can provide a Twitter account like this:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ python social/social.py twitter:brenns10
-</pre></div>
-</div>
-<p>When the program runs, it outputs each &#8220;social network account&#8221; on the command
-line.  Happy stalking, I guess...</p>
-</div>
+  <div class="section" id="plugins">
+<span id="id1"></span><h1>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h1>
+<p>Social supports plugins for many different types of social networking accounts.
+This section provides a list of account plugins with their relevant
+documentation.</p>
+<span class="target" id="module-social.accounts"></span><span class="target" id="module-social.accounts.github"></span><p><strong>GitHubAccount</strong></p>
+<p>Represents an account at GitHub.</p>
+<ul class="simple">
+<li>Matches a link that looks like it goes to a GitHub profile page.</li>
+<li>Returns the &#8220;your site&#8221; URL from the user&#8217;s GitHub profile.</li>
+<li>Use on the command line: <code class="docutils literal"><span class="pre">github:username</span></code>.</li>
+</ul>
+<span class="target" id="module-social.accounts.site"></span><p><strong>PersonalSite</strong></p>
+<p>This social networking &#8220;account&#8221; is supposed to represent somebody&#8217;s personal
+website.  The idea is that many people put their personal website in the URL
+field of social network profiles, and frequently they put links to other
+accounts on the frontpage of their website.</p>
+<ul class="simple">
+<li>Matches a link to a website that hos no path (or just a path of &#8220;/&#8221;).</li>
+<li>Expands to all the links on the front page that aren&#8217;t internal.<ul>
+<li>It actually filters to avoid links that would only match &#8220;PersonalSite&#8221;
+again, because you are already on their personal site.</li>
+</ul>
+</li>
+<li>Use on the command line: <code class="docutils literal"><span class="pre">site:http://example.com</span></code>.</li>
+</ul>
+<span class="target" id="module-social.accounts.twitter"></span><p><strong>Twitter Account</strong></p>
+<p>Represents a person&#8217;s Twitter account.</p>
+<ul class="simple">
+<li>Matches a Twitter profile link.</li>
+<li>Returns profile URLs from Twitter.</li>
+<li>Use on command line: <code class="docutils literal"><span class="pre">twiter:username</span></code>.</li>
+</ul>
+<span class="target" id="module-social.accounts.so"></span><p><strong>StackOverflowAccount</strong></p>
+<p>This account plugin represents a person&#8217;s StackOverflow account.</p>
+<ul class="simple">
+<li>Matches any StackOverflow profile link.</li>
+<li>Returns URLs from their profile.</li>
+<li>Use on command line: <code class="docutils literal"><span class="pre">so:username:uid</span></code> (you can find the uid in the profile
+link).</li>
+</ul>
 </div>
 
 
@@ -191,10 +180,10 @@ line.  Happy stalking, I guess...</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="plugins.html" class="btn btn-neutral float-right" title="Plugins" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="extending.html" class="btn btn-neutral float-right" title="Extending Social" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to Social’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral" title="Tutorial" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

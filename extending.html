@@ -32,7 +32,7 @@
   
     <link rel="top" title="Social 0.1 documentation" href="index.html"/>
         <link rel="next" title="Contributing" href="contributing.html"/>
-        <link rel="prev" title="Tutorial" href="tutorial.html"/> 
+        <link rel="prev" title="Plugins" href="plugins.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -83,9 +83,11 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Extending Social</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#breadcrumbs-objects">Breadcrumbs objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#info-objects">Info objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-account-class-documentation">Full <code class="docutils literal"><span class="pre">Account</span></code> Class Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
@@ -134,7 +136,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="extending-social">
-<h1>Extending Social<a class="headerlink" href="#extending-social" title="Permalink to this headline">¶</a></h1>
+<span id="extending"></span><h1>Extending Social<a class="headerlink" href="#extending-social" title="Permalink to this headline">¶</a></h1>
 <p>Social has a pretty modular design.  Each type of social network account is
 represented by a subclass of the <code class="docutils literal"><span class="pre">social.accounts.Account</span></code> class.  The main
 loop is an implementation of a breadth first search: the nodes are Accounts, and
@@ -202,6 +204,103 @@ to set, but already exists, you may want to instead add your value to a list in
 already there, add it to a list in the key <code class="docutils literal"><span class="pre">fullname-others</span></code>.</p>
 <p>I&#8217;ll probably make a class to abstract away all these details soon.</p>
 </div>
+<div class="section" id="full-account-class-documentation">
+<h2>Full <code class="docutils literal"><span class="pre">Account</span></code> Class Documentation<a class="headerlink" href="#full-account-class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="social.accounts.Account">
+<em class="property">class </em><code class="descclassname">social.accounts.</code><code class="descname">Account</code><span class="sig-paren">(</span><em>*breadcrumbs</em><span class="sig-paren">)</span><a class="headerlink" href="#social.accounts.Account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for all types of social networking accounts.</p>
+<p>In order for an Account to be considered in the search, it must satisfy two
+requirements:</p>
+<ol class="arabic simple">
+<li>It must be a direct subclass of Account.  As of right now, only direct
+subclasses are included.  However, this may change if I find it
+convenient to include intermediate classes for utility.</li>
+<li>It must have been imported prior to the search, so that the class name is
+registered in <code class="docutils literal"><span class="pre">Account.__subclasses__()</span></code>.</li>
+</ol>
+<p><em>Constructor</em></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>breadcrumbs</strong> (<em>dict</em>) &#8211; The breadcrumbs object to construct the account
+from.  If meth:<cite>match()</cite> returned truthy, this should succeed.  If
+<code class="xref py py-meth docutils literal"><span class="pre">match()</span></code> returned false-y, it may still return an instance, but the
+returned account is less &#8220;guaranteed&#8221; to be definitely the same person&#8217;s.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises ValueError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The constructor shall raise <code class="docutils literal"><span class="pre">ValueError</span></code> in the case
+that the breadcrumbs cannot be resolved into an account instance.  This
+should not happen if <code class="xref py py-meth docutils literal"><span class="pre">match()</span></code> returned truthy.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="social.accounts.Account.__hash__">
+<code class="descname">__hash__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#social.accounts.Account.__hash__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the hash, so the Account may be kept in a set/dict.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="social.accounts.Account.__str__">
+<code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#social.accounts.Account.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the string representation of this account.</p>
+<p>This must return <code class="docutils literal"><span class="pre">&quot;ClassName(necessary=args)&quot;</span></code>, such that if you
+eval&#8217;d it with the correct imports, you would get a valid account
+object.  The implementation should prefer the easy arguments,
+e.g. username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="social.accounts.Account.expand">
+<code class="descname">expand</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#social.accounts.Account.expand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterable of breadcrumb dicts!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>info</strong> &#8211; A dictionary that should contain information about the
+person.  It should be updated with any information you come across,
+and you may want to use any info in it to help narrow down your
+search.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterable of breadcrumb dictionaries that the search will try
+to match for new accounts.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="social.accounts.Account.match">
+<em class="property">static </em><code class="descname">match</code><span class="sig-paren">(</span><em>*breadcrumbs</em><span class="sig-paren">)</span><a class="headerlink" href="#social.accounts.Account.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return truthy if the breadcrumbs match the account.</p>
+<p>The breadcrumbs are described in detail in the documentation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>breadcrumbs</strong> (<em>dict</em>) &#8211; Key/value breadcrumbs to attempt to match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Truthy if the breadcrumbs can be turned into an instance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="social.accounts.Account.shortname">
+<em class="property">static </em><code class="descname">shortname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#social.accounts.Account.shortname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name used on the command line.</p>
+<p>Command line arguments are passed in <code class="docutils literal"><span class="pre">key:value</span></code> style.  This should
+return the key that users can use on the command line to specify a
+username for this account.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -214,7 +313,7 @@ already there, add it to a list in the key <code class="docutils literal"><span 
         <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tutorial.html" class="btn btn-neutral" title="Tutorial" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="plugins.html" class="btn btn-neutral" title="Plugins" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

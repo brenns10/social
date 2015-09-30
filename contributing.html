@@ -82,6 +82,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Social</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Contributing</a></li>
 </ul>
@@ -131,16 +132,28 @@
   <div class="section" id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <p>If you&#8217;re interested in adding support for a social networking account type,
-check out the Extending section to get an idea of how the framework works.
-Then, you may find the file <code class="docutils literal"><span class="pre">templates/template.py</span></code> useful for starting your
-social networking account.  I&#8217;ll accept pull requests with new accounts in the
-<code class="docutils literal"><span class="pre">social/accounts/</span></code> folder, just make sure you do the following:</p>
+check out the <a class="reference internal" href="extending.html#extending"><span>Extending Social</span></a> section to get an idea of how the framework
+works.  Then, you may find the file <code class="docutils literal"><span class="pre">templates/template.py</span></code> useful for
+starting your social networking account.  I&#8217;ll accept pull requests with new
+accounts in the <code class="docutils literal"><span class="pre">social/accounts/</span></code> folder, just make sure you do the
+following:</p>
 <ul class="simple">
+<li>In your new account code file:<ul>
+<li>Implement all the stubbed out functions.</li>
+<li>Describe the plugin as outlined in the docstring!</li>
 <li>PEP8 your code!!  Please, even if you just run <code class="docutils literal"><span class="pre">autopep8</span></code>.  It makes me
 happy.</li>
-<li>Make sure to update the <code class="docutils literal"><span class="pre">__all__</span></code> variable in
-<code class="docutils literal"><span class="pre">social/accounts/__init__.py</span></code> with your new module name so it gets
-automatically imported for the search.</li>
+</ul>
+</li>
+<li>In <code class="docutils literal"><span class="pre">social/accounts/__init__.py</span></code>:<ul>
+<li>Make sure to update the <code class="docutils literal"><span class="pre">__all__</span></code> variable with your new module name so it
+gets automatically imported for the search.</li>
+<li>Also make sure to update the docstring with the fully documented module name
+so that its documentation is automatically generated on the plugin
+documentation page.</li>
+</ul>
+</li>
+<li>Submit a pull request.</li>
 </ul>
 </div>
 
