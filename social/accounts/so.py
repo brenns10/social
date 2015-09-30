@@ -1,4 +1,13 @@
-"""Twitter Account abstraction."""
+"""
+**StackOverflowAccount**
+
+This account plugin represents a person's StackOverflow account.
+
+- Matches any StackOverflow profile link.
+- Returns URLs from their profile.
+- Use on command line: ``so:username:uid`` (you can find the uid in the profile
+  link).
+"""
 
 import re
 import requests

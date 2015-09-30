@@ -1,4 +1,20 @@
-"""Personal website abstraction."""
+"""
+**PersonalSite**
+
+This social networking "account" is supposed to represent somebody's personal
+website.  The idea is that many people put their personal website in the URL
+field of social network profiles, and frequently they put links to other
+accounts on the frontpage of their website.
+
+- Matches a link to a website that hos no path (or just a path of "/").
+
+- Expands to all the links on the front page that aren't internal.
+
+  - It actually filters to avoid links that would only match "PersonalSite"
+    again, because you are already on their personal site.
+
+- Use on the command line: ``site:http://example.com``.
+"""
 
 import re
 import requests

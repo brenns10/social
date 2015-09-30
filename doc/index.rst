@@ -22,6 +22,7 @@ for more details.
    :maxdepth: 2
 
    tutorial
+   plugins
    extending
    contributing
 

@@ -1,4 +1,12 @@
-"""Twitter Account abstraction."""
+"""
+**Twitter Account**
+
+Represents a person's Twitter account.
+
+- Matches a Twitter profile link.
+- Returns profile URLs from Twitter.
+- Use on command line: ``twiter:username``.
+"""
 
 import re
 import requests

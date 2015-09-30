@@ -49,8 +49,9 @@ will visit that account and try to find more linked accounts.  Then it will
 visit those accounts to find even more, and so forth.  To provide the first
 account, you give it as a command line argument.  You give arguments in a
 ``key:value`` way, where the key is the name of the social network, and the
-value is usually the username.  For instance, you can provide a Twitter account
-like this:
+value is usually the username.  You can see the full list of supported social
+networking accounts and their command line syntax on the "Plugins" page.  For
+instance, you can provide a Twitter account like this:
 
 .. code:: bash
           

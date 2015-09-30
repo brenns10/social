@@ -1,4 +1,12 @@
-"""Github Account abstraction."""
+"""
+**GitHubAccount**
+
+Represents an account at GitHub.
+
+- Matches a link that looks like it goes to a GitHub profile page.
+- Returns the "your site" URL from the user's GitHub profile.
+- Use on the command line: ``github:username``.
+"""
 
 from __future__ import print_function, division
 

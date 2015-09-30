@@ -1,4 +1,9 @@
-"""Import and register all account types."""
+"""
+.. automodule:: social.accounts.github
+.. automodule:: social.accounts.site
+.. automodule:: social.accounts.twitter
+.. automodule:: social.accounts.so
+"""
 
 from abc import ABCMeta, abstractmethod
 from six import with_metaclass
