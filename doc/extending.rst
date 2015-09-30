@@ -73,4 +73,10 @@ already there, add it to a list in the key ``fullname-others``.
 
 I'll probably make a class to abstract away all these details soon.
 
+Full ``Account`` Class Documentation
+------------------------------------
 
+.. autoclass:: social.accounts.Account
+   :members:
+   :special-members:
+   :exclude-members: __weakref__

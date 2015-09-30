@@ -17,6 +17,9 @@ import sys
 import os
 import shlex
 
+# Include the parent directory in the path so we can import the module.
+sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
