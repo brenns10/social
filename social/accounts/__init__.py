@@ -1,6 +1,7 @@
 """Import and register all account types."""
 
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
+from six import with_metaclass
 
 __all__ = ['github', 'site', 'twitter', 'so']
 
@@ -12,7 +13,7 @@ def account_for(**breadcrumbs):
             return cls(**breadcrumbs)
 
 
-class Account(ABC):
+class Account(with_metaclass(ABCMeta, object)):
 
     @abstractmethod
     def __init__(self, *breadcrumbs):
