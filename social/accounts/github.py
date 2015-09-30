@@ -41,6 +41,12 @@ class GitHubAccount(Account):
 
         # Save info
         info['usernames'] = self._username
+        for span in tree.xpath(r'//*[@itemprop="name"]'):
+            info['name'] = span.text_content().strip()
+        for span in tree.xpath(r'//*[@itemprop="worksFor"]'):
+            info['employer'] = span.text_content().strip()
+        for span in tree.xpath(r'//*[@itemprop="homeLocation"]'):
+            info['location'] = span.text_content().strip()
 
         # Search for a website!
         for anchor in tree.xpath(r'//a[contains(@class,"url")]'):
