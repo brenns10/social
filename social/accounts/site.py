@@ -39,6 +39,10 @@ class PersonalSite(Account):
     def expand(self, info):
         page = requests.get(self._url)
         tree = html.fromstring(page.text)
+
+        for meta in tree.xpath(r'//meta[@name="author"]'):
+            info['name'] = meta.attrib['content']
+
         for anchor in tree.xpath('//a'):
             url = anchor.attrib.get('href')
             if not url:
