@@ -38,8 +38,6 @@ Future Work
     - Slideshare
     - LinkedIn
     - Others?  Feel free to suggest in issue or create it and PR it!
-- I'll probably create an `Info` class that manages information about the user
-  that the plugins dig up (better than passing around a dict).
 - I'd like to add an OAuth credential storage API so that plugins can use a
   social network APIs to get more information.  Very exciting.
 - I'd also like to add a second phase to the search.  It will take the person's

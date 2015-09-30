@@ -36,9 +36,7 @@ class EmailAccount(Account):
             raise ValueError('No usable parameters')
 
     def expand(self, info):
-        emails = info.get('emails', set())
-        emails.add(self._email)
-        info['emails'] = emails
+        info['emails'] = self._email
         yield {'email': self._email}
 
     @staticmethod

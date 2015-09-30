@@ -8,6 +8,7 @@ from collections import deque
 from accounts import *
 # This actually imports the stuff from accounts/__init__.py we want.
 from accounts import Account, account_for
+from info import DemographicInfo
 
 
 def account_slug(slug):
@@ -21,7 +22,7 @@ def build_network(initial_account):
     """Given an initial account, attempt to return all other accounts."""
     visit_queue = deque([initial_account])
     accounts = set([initial_account])
-    info = dict()
+    info = DemographicInfo()
 
     # Dijkstra's Algorithm, anyone?
     while visit_queue:
