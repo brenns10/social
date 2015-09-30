@@ -1,4 +1,12 @@
-"""ReplaceMe abstraction."""
+"""
+**ReplaceMe**
+
+[Describe what your subclass does here.]
+
+- In this bullet point, describe what your account matches.
+- Here, describe what your account expands to.
+- Demonstrate use on command line: ``key:value``.
+"""
 
 import re
 #import requests
@@ -24,20 +32,10 @@ class ReplaceMeAccount(Account):
             raise ValueError('No usable parameters')
 
     def expand(self, info):
-        """
-        Return a generator of "breadcrumbs".
-
-        The info parameter is a dictionary you can read and update with
-        information about the person you're searching for.  So you can scrape
-        names, birthdays, etc, and stick them into the dict!  Creepy, right?
-        """
         return []  # TODO: fill out the expand....
 
     @staticmethod
     def match(**options):
-        """
-        Return truthy if the breadcrumbs would match this type of account.
-        """
         return (
             'url' in options
             and _URL_RE.fullmatch(options['url'])
@@ -45,9 +43,6 @@ class ReplaceMeAccount(Account):
 
     @staticmethod
     def shortname():
-        """
-        The name used on the CLI so that you don't have to type the class name.
-        """
         return 'ReplaceMe'
 
     def __str__(self):
@@ -57,7 +52,4 @@ class ReplaceMeAccount(Account):
         return hash(self._username)
 
     def __eq__(self, other):
-        """
-        If you want the search to terminate, make sure this is right!
-        """
         return type(other) is ReplaceMeAccount and self._username == other._username
