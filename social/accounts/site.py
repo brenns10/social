@@ -11,9 +11,12 @@ _URL_RE = re.compile(r'https?://[\w-]+(\.[\w-]+)+/?\Z')
 
 class PersonalSite(Account):
 
-    def __init__(self, url=None):
+    def __init__(self, url=None, username=None):
         if url is not None:
             self._url = url
+        elif username is not None:
+            # command line arguments are provided under the "username" argument.
+            self._url = username
         else:
             raise ValueError("That doesn't quite look like a personal site.")
 
