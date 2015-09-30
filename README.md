@@ -13,53 +13,42 @@ GitHubAccount(username='brenns10')
 StackOverflowAccount(username='brenns10', uid=820319)
 ```
 
-Setup
------
+Documentation
+-------------
 
-Clone, create a virtualenv, and install requirements:
+Information on using and extending this program can be found at its
+documentation page: http://stephen-brennan.com/social/
 
-```bash
-$ git clone git@github.com:brenns10/social.git
-$ cd social
-$ pyvenv venv
-$ . venv/bin/activate
-$ pip install -r requirements.txt
-$ python social/social.py [starting:account]
-```
+Contributing
+------------
 
 I'm mainly a Python 3 developer, but I have tried the code on Python 2 and fixed
 a few things so that it runs there as well.  Feel free to create an issue for
 compatibility problems and I'll try to address it.  This module is pure Python
 and I see no reason why it shouldn't support 2 and 3.
 
-Plugin Support
---------------
+I'm also glad to accept pull requests with new social network types.  See the
+"Contributing" section of the documentation for more info.
 
-- GitHub (`github:username`)
-- Twitter (`twitter:username`)
-- StackOverflow (`so:username:uid`)
-- Personal websites (sort of)
+Future Work
+-----------
 
-Candidates:
-- Bitbucket
-- Slideshare
-- LinkedIn
-- Others?
-
-Contributing
-------------
-
-I'd be glad to accept Pull Requests for more account types!  You can use the
-template in the `templates` folder to get started (grep for `ReplaceMe`).  You
-want to make sure all the functions work correctly (especially `__eq__`) to
-prevent an infinite loop in the search.  Also, try to make sure you have PEP8
-formatted code!
-
-Perhaps most importantly, you need to update the `__all__` list in
-`social/accounts/__init__.py` with the module name for your account, in order to
-make it automatically import and be considered during the search.
+- I'm intending to add many new plugins as time allows, e.g.:
+    - Bitbucket
+    - Slideshare
+    - LinkedIn
+    - Others?  Feel free to suggest in issue or create it and PR it!
+- I'll probably create an `Info` class that manages information about the user
+  that the plugins dig up (better than passing around a dict).
+- I'd like to add an OAuth credential storage API so that plugins can use a
+  social network APIs to get more information.  Very exciting.
+- I'd also like to add a second phase to the search.  It will take the person's
+  known usernames, and search for under those usernames in all the account types
+  it hasn't found yet.  Then, it will present these to the user and prompt
+  whether or not it belongs to them.  If so, it will continue the search.
 
 License
 -------
 
-This project is under the Revised BSD license.  See [LICENSE.txt][] for details.
+This project is under the Revised BSD license.  See [LICENSE.txt](LICENSE.txt)
+for details.
