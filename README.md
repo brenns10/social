@@ -27,6 +27,11 @@ $ pip install -r requirements.txt
 $ python social/social.py [starting:account]
 ```
 
+I'm mainly a Python 3 developer, but I have tried the code on Python 2 and fixed
+a few things so that it runs there as well.  Feel free to create an issue for
+compatibility problems and I'll try to address it.  This module is pure Python
+and I see no reason why it shouldn't support 2 and 3.
+
 Plugin Support
 --------------
 
