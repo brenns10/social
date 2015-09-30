@@ -43,7 +43,7 @@ class GitHubAccount(Account):
         info['usernames'] = self._username
 
         # Search for a website!
-        for anchor in tree.xpath(r'//a[@class="url"]'):
+        for anchor in tree.xpath(r'//a[contains(@class,"url")]'):
             yield {'url': anchor.attrib['href']}
         for anchor in tree.xpath(r'//a[contains(@class, "email")]'):
             yield {'url': anchor.attrib['href']}
