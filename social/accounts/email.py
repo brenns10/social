@@ -37,6 +37,7 @@ class EmailAccount(Account):
 
     def expand(self, info):
         info['emails'] = self._email
+        info['usernames'], _ = self._email.split('@', 1)
         yield {'email': self._email}
 
     @staticmethod

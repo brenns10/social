@@ -40,6 +40,8 @@ class StackOverflowAccount(Account):
         page = requests.get(url)
         tree = html.fromstring(page.text)
 
+        info['usernames'] = self._username
+
         for anchor in tree.xpath(r'//a[@class="url"]'):
             yield {'url': anchor.attrib['href']}
 

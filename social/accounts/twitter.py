@@ -36,6 +36,8 @@ class TwitterAccount(Account):
         page = requests.get(url)
         tree = html.fromstring(page.text)
 
+        info['usernames'] = self._username
+
         for anchor in tree.xpath(r'//a[contains(@rel,"me")]'):
             yield {'url': anchor.attrib['title']}
 

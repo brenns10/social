@@ -39,6 +39,9 @@ class GitHubAccount(Account):
         page = requests.get(url)
         tree = html.fromstring(page.text)
 
+        # Save info
+        info['usernames'] = self._username
+
         # Search for a website!
         for anchor in tree.xpath(r'//a[@class="url"]'):
             yield {'url': anchor.attrib['href']}
