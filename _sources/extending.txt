@@ -70,10 +70,8 @@ value.
 - ``usernames``: should map to the set of usernames we've seen this person use
   thus far in the search.
 - ``emails``: self explanatory
-- ``fullname``: should map to the person's full name, or None.
-- ``city``: the person's city
-- ``state``: the person's state or province
-- ``country``: the person's country
+- ``name``: should map to the person's full name, or None.
+- ``location``: the person's location
 - ``phones``: a set of phone numbers (as strings)
 
 Your code should not assume that any of these keys exist.  Create them if they
