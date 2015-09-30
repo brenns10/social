@@ -171,6 +171,15 @@ again, because you are already on their personal site.</li>
 <li>Use on command line: <code class="docutils literal"><span class="pre">so:username:uid</span></code> (you can find the uid in the profile
 link).</li>
 </ul>
+<span class="target" id="module-social.accounts.email"></span><p><strong>EmailAccount</strong></p>
+<p>Represents an email account.  For the most part, this just exists to make it
+easier to parse <code class="docutils literal"><span class="pre">mailto:...</span></code> email address links, so that other plugins don&#8217;t
+have to be modified.</p>
+<ul class="simple">
+<li>Matches <code class="docutils literal"><span class="pre">mailto:...</span></code> links.</li>
+<li>Expands to a single <code class="docutils literal"><span class="pre">{'email':</span> <span class="pre">'...'}</span></code> breadcrumb.</li>
+<li>Use on command line: <code class="docutils literal"><span class="pre">email:example&#64;example.com</span></code>.</li>
+</ul>
 </div>
 
 
