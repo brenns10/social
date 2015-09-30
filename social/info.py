@@ -6,7 +6,7 @@ from collections import UserDict
 
 class DemographicInfo(UserDict):
 
-    def __set__(self, key, value):
+    def __setitem__(self, key, value):
         if key in self.data:
             self.data[key].add(value)
         else:
