@@ -37,6 +37,12 @@ class TwitterAccount(Account):
         tree = html.fromstring(page.text)
 
         info['usernames'] = self._username
+        for span in tree.xpath(r'//*[contains(@class, "ProfileHeaderCard-nameLink")]'):
+            info['name'] = span.text_content().strip()
+        for span in tree.xpath(r'//*[contains(@class, "ProfileHeaderCard-locationText")]'):
+            info['location'] = span.text_content().strip()
+        for span in tree.xpath(r'//*[contains(@class, "ProfileHeaderCard-birthdateText")]'):
+            info['birthday'] = span.text_content().strip()
 
         for anchor in tree.xpath(r'//a[contains(@rel,"me")]'):
             yield {'url': anchor.attrib['title']}
