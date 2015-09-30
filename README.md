@@ -34,7 +34,6 @@ Future Work
 -----------
 
 - I'm intending to add many new plugins as time allows, e.g.:
-    - Bitbucket
     - Slideshare
     - LinkedIn
     - Medium
