@@ -39,6 +39,8 @@ Future Work
     - LinkedIn
     - Medium
     - Google+
+    - Steam
+    - Reddit
     - Others?  Feel free to suggest in issue or create it and PR it!
 - I'd like to add an OAuth credential storage API so that plugins can use a
   social network APIs to get more information.  Very exciting.
