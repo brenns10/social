@@ -184,13 +184,20 @@ against, only used in the constructor.</li>
 <div class="section" id="info-objects">
 <h2>Info objects<a class="headerlink" href="#info-objects" title="Permalink to this headline">¶</a></h2>
 <p>In addition, the <code class="docutils literal"><span class="pre">expand()</span></code> function is passed a parameter named <code class="docutils literal"><span class="pre">info</span></code>.
-This is a dictionary that should be consulted if any additional information
-(like a person&#8217;s name) is needed.  It should also be updated if any other
-information is found.  Here are some standard keys into the dictionary that your
-plugin may want to use:</p>
+This is a dictionary-like object that should be consulted if any additional
+information (like a person&#8217;s name) is needed.  It&#8217;s not quite like an ordinary
+dictionary though.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">info</span><span class="p">[</span><span class="s">&#39;emails&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;example@example.com&#39;</span>
+</pre></div>
+</div>
+<p>The above sample code will add the email to a set containing all emails found so
+far (instead of overwriting an existing email).  When you access a property and
+it exists, it will always return back a set of values instead of just a single
+value.</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">usernames</span></code>: should map to the set of usernames we&#8217;ve seen this person use
 thus far in the search.</li>
+<li><code class="docutils literal"><span class="pre">emails</span></code>: self explanatory</li>
 <li><code class="docutils literal"><span class="pre">fullname</span></code>: should map to the person&#8217;s full name, or None.</li>
 <li><code class="docutils literal"><span class="pre">city</span></code>: the person&#8217;s city</li>
 <li><code class="docutils literal"><span class="pre">state</span></code>: the person&#8217;s state or province</li>

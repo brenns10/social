@@ -54,13 +54,22 @@ Info objects
 ------------
 
 In addition, the ``expand()`` function is passed a parameter named ``info``.
-This is a dictionary that should be consulted if any additional information
-(like a person's name) is needed.  It should also be updated if any other
-information is found.  Here are some standard keys into the dictionary that your
-plugin may want to use:
+This is a dictionary-like object that should be consulted if any additional
+information (like a person's name) is needed.  It's not quite like an ordinary
+dictionary though.
+
+.. code:: python
+
+          info['emails'] = 'example@example.com'
+
+The above sample code will add the email to a set containing all emails found so
+far (instead of overwriting an existing email).  When you access a property and
+it exists, it will always return back a set of values instead of just a single
+value.
 
 - ``usernames``: should map to the set of usernames we've seen this person use
   thus far in the search.
+- ``emails``: self explanatory
 - ``fullname``: should map to the person's full name, or None.
 - ``city``: the person's city
 - ``state``: the person's state or province
