@@ -33,6 +33,7 @@ def build_network(initial_account):
                 accounts.add(new_account)
                 visit_queue.append(new_account)
 
+    print(info)
     return accounts
 
 

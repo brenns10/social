@@ -40,7 +40,10 @@ class PersonalSite(Account):
         page = requests.get(self._url)
         tree = html.fromstring(page.text)
         for anchor in tree.xpath('//a'):
-            url = anchor.attrib['href']
+            url = anchor.attrib.get('href')
+            if not url:
+                continue
+
             # Don't include links within the site.
             if url.startswith(self._url):
                 continue

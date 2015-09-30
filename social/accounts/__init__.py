@@ -3,12 +3,13 @@
 .. automodule:: social.accounts.site
 .. automodule:: social.accounts.twitter
 .. automodule:: social.accounts.so
+.. automodule:: social.accounts.email
 """
 
 from abc import ABCMeta, abstractmethod
 from six import with_metaclass
 
-__all__ = ['github', 'site', 'twitter', 'so']
+__all__ = ['github', 'site', 'twitter', 'so', 'email']
 
 
 def account_for(**breadcrumbs):

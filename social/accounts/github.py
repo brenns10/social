@@ -42,6 +42,8 @@ class GitHubAccount(Account):
         # Search for a website!
         for anchor in tree.xpath(r'//a[@class="url"]'):
             yield {'url': anchor.attrib['href']}
+        for anchor in tree.xpath(r'//a[contains(@class, "email")]'):
+            yield {'url': anchor.attrib['href']}
 
     @staticmethod
     def match(**options):
