@@ -6,7 +6,7 @@ from lxml import html
 
 from . import Account
 
-_URL_RE = re.compile(r'https?://(www.)?twitter.com/(?P<username>\w+)/?')
+_URL_RE = re.compile(r'https?://(www.)?twitter.com/(?P<username>\w+)/?\Z')
 
 
 class TwitterAccount(Account):
@@ -15,7 +15,7 @@ class TwitterAccount(Account):
         if username is not None:
             self._username = username
         elif url is not None:
-            match = _URL_RE.fullmatch(url)
+            match = _URL_RE.match(url)
             if match:
                 self._username = match.group('username')
             else:
@@ -30,13 +30,12 @@ class TwitterAccount(Account):
 
         for anchor in tree.xpath(r'//a[contains(@rel,"me")]'):
             yield {'url': anchor.attrib['title']}
-        return []
 
     @staticmethod
     def match(**options):
         return (
             'url' in options
-            and _URL_RE.fullmatch(options['url'])
+            and _URL_RE.match(options['url'])
         )
 
     @staticmethod

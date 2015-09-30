@@ -6,7 +6,7 @@ from lxml import html
 
 from . import Account, account_for
 
-_URL_RE = re.compile(r'https?://[\w-]+(\.[\w-]+)+/?')
+_URL_RE = re.compile(r'https?://[\w-]+(\.[\w-]+)+/?\Z')
 
 
 class PersonalSite(Account):
@@ -36,7 +36,7 @@ class PersonalSite(Account):
     def match(**options):
         return (
             'url' in options
-            and _URL_RE.fullmatch(options['url'])
+            and _URL_RE.match(options['url'])
         )
 
     @staticmethod

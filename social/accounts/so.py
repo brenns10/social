@@ -6,7 +6,7 @@ from lxml import html
 
 from . import Account
 
-_URL_RE = re.compile(r'https?://(www.)?stackoverflow.com/users/(?P<id>\d+)/(?P<username>\w+)/?')
+_URL_RE = re.compile(r'https?://(www.)?stackoverflow.com/users/(?P<id>\d+)/(?P<username>\w+)/?\Z')
 
 
 class StackOverflowAccount(Account):
@@ -16,7 +16,7 @@ class StackOverflowAccount(Account):
             self._username, self._uid = username.split(':', 1)
             self._uid = int(self._uid)
         elif url is not None:
-            match = _URL_RE.fullmatch(url)
+            match = _URL_RE.match(url)
             if match:
                 self._username = match.group('username')
                 self._uid = int(match.group('id'))
@@ -38,7 +38,7 @@ class StackOverflowAccount(Account):
     def match(**options):
         return (
             'url' in options
-            and _URL_RE.fullmatch(options['url'])
+            and _URL_RE.match(options['url'])
         )
 
     @staticmethod
