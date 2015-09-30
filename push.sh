@@ -18,7 +18,7 @@ if [ "$1" != "dry" ]; then
 fi
 
 # Copy in the HTML.
-mv ../$REPO/doc/_build/html/* ./
+cp -R ../$REPO/doc/_build/html/* ./
 
 # Add and commit changes.
 git add -A .
